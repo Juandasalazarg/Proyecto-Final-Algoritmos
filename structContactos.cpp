@@ -19,7 +19,7 @@ void imprimirInformacion(const std::map<std::string, InformacionContacto>& mapa)
         cout << "Numero: " << par.second.numero << endl;
         cout << "Red Social: " << par.second.redSocial << endl;
         cout << "Dirección: " << par.second.direccion << endl;
-        cout << "Favoritos: " << par.second.favorite << endl;
+        cout << "Favoritos: " << (par.second.favorite ? "Si" : "No") << endl;
         cout << "--------------------------" << endl;
     }
 }
@@ -54,17 +54,12 @@ int main() {
     cout << endl;
 
     // Favoritos
-
-    cout << "Desea Agregar a: " << nombreContacto << " como favorito?:  Y/N ";
+    cout << "Desea Agregar a: " << nombreContacto << " como favorito? (Y/N): ";
     cin >> Contactofav;
-    if (Contactofav == "T" || Contactofav == "y" || Contactofav == "Yes" || Contactofav == "Y"){
-        favorito = true;    
-    }else{
-        favorito = false;
-    }
+    favorito = (Contactofav == "Y" || Contactofav == "y");
 
     // Insertar elementos en el mapa
-    mapaContactos[nombreContacto] = {numeroContacto, redContacto, direccionContacto,favorito};
+    mapaContactos[nombreContacto] = {numeroContacto, redContacto, direccionContacto, favorito};
 
     // Llamar a la función para imprimir la información
     imprimirInformacion(mapaContactos);
