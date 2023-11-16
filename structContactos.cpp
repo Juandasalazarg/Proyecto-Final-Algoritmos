@@ -9,6 +9,7 @@ struct InformacionContacto {
     string numero;
     string redSocial;
     string direccion;
+    bool favorite;
 };
 
 // Definimos una función para imprimir el mapa
@@ -18,6 +19,7 @@ void imprimirInformacion(const std::map<std::string, InformacionContacto>& mapa)
         cout << "Numero: " << par.second.numero << endl;
         cout << "Red Social: " << par.second.redSocial << endl;
         cout << "Dirección: " << par.second.direccion << endl;
+        cout << "Favoritos: " << par.second.favorite << endl;
         cout << "--------------------------" << endl;
     }
 }
@@ -27,7 +29,8 @@ int main() {
     map<std::string, InformacionContacto> mapaContactos;
 
     // Definimos los string & long del contacto
-    string nombreContacto, redContacto, direccionContacto, numeroContacto;
+    string nombreContacto, redContacto, direccionContacto, numeroContacto, Contactofav;
+    bool favorito;
 
     // Pedir información al usuario
     // Nombre
@@ -50,8 +53,18 @@ int main() {
     getline(cin >> ws, direccionContacto); // Lee toda la linea ingresada en la terminal con sus espacios y ws descarta espacios en blanco iniciales
     cout << endl;
 
+    // Favoritos
+
+    cout << "Desea Agregar a: " << nombreContacto << " como favorito?:  Y/N ";
+    cin >> Contactofav;
+    if (Contactofav == "T" || Contactofav == "y" || Contactofav == "Yes" || Contactofav == "Y"){
+        favorito = true;    
+    }else{
+        favorito = false;
+    }
+
     // Insertar elementos en el mapa
-    mapaContactos[nombreContacto] = {numeroContacto, redContacto, direccionContacto};
+    mapaContactos[nombreContacto] = {numeroContacto, redContacto, direccionContacto,favorito};
 
     // Llamar a la función para imprimir la información
     imprimirInformacion(mapaContactos);
