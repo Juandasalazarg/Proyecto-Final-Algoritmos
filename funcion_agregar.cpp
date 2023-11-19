@@ -68,6 +68,34 @@ map<std::string, Contacto> add_contacto(map<std::string, Contacto> mapaContactos
     mapaContactos[nombreContacto] = t;
     return mapaContactos;
 }
+map<std::string, Contacto> eliminar_contacto(map<std::string, Contacto> mapaContactos){
+    string nombreContacto;
+    
+    cout << "Ingrese el nombre del contacto que desea eliminar: ";
+    getline(cin,nombreContacto);
+    transform(nombreContacto.begin(),nombreContacto.end(),nombreContacto.begin(),::tolower);
+    cout << endl;
+    
+    if (mapaContactos.find(nombreContacto) != mapaContactos.end()) {
+       
+        string eliminacion;
+        cout << "Desea eliminar definitivamente el contacto? (Y/N):";
+        cin >> eliminacion;
+        
+        if (eliminacion == "y" || eliminacion == "Y" ){
+            mapaContactos.erase(nombreContacto);
+            cout<<"El contacto se eliminó correctamente"<<endl;
+        }else{
+            return mapaContactos;
+        }
+    } else {
+        cout << "El elemento no pertenece a la lista de contactos" << endl<<endl;
+    }
+    
+    return mapaContactos;
+    
+    
+}
 int main() {
     // Creamos el mapa de contactos
     map<std::string, Contacto> mapaContactos;
