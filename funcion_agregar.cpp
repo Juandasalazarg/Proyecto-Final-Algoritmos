@@ -3,6 +3,8 @@
 #include <string>
 #include <cctype>
 #include <algorithm>
+#include <stack>
+
 
 using namespace std;
 
@@ -93,15 +95,51 @@ map<std::string, Contacto> eliminar_contacto(map<std::string, Contacto> mapaCont
     }
     
     return mapaContactos;
-    
-    
+
 }
+
+
+stack<string> Llamar_contacto(stack<string>& recientes, const map<string, Contacto>& mapaContactos) {
+    long num_Contacto;
+
+    cout << "Ingrese el numero del contacto que desea llamar: ";
+    cin >> num_Contacto;
+    cout << endl;
+
+    for (const auto& par : mapaContactos) {
+        const string& clave = par.first;
+        const long num = par.second.numero;
+        if (num == num_Contacto) {
+            recientes.push(clave);
+        }
+    }
+
+    return recientes;
+}
+
+void reciente(stack<string>& recientes, const map<string, Contacto>& mapaContactos) {
+    
+    cout<<"CONTACTOS ---- RECIENTES"<<endl;
+    
+    while (!recientes.empty()) {
+        map<string, Contacto> reserva;
+        const string& contacto_reciente = recientes.top();
+        reserva[contacto_reciente] = mapaContactos.at(contacto_reciente);
+        recientes.pop();
+        imprimirInformacion(reserva);
+    }
+}
+
 int main() {
     // Creamos el mapa de contactos
     map<std::string, Contacto> mapaContactos;
+    stack<string>recientes;
     mapaContactos=add_contacto(mapaContactos);
     // Llamar a la función para imprimir la información
-    imprimirInformacion(mapaContactos);
-
+    Llamar_contacto(recientes,mapaContactos);
+    reciente(recientes,mapaContactos);
+    
+    
+    
     return 0;
 }
