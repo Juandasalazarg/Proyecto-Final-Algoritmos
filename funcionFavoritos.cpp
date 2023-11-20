@@ -217,6 +217,47 @@ map<std::string, Contacto> añadirFavorito (map<std::string, Contacto> mapaConta
     return mapaContactos;
 };
 
+map<std::string, Contacto> eliminarFavorito (map<std::string, Contacto> mapaContactos, string nombreContacto){
+
+    string favorito;
+
+    if(nombreContacto != ""){
+
+        transform(nombreContacto.begin(),nombreContacto.end(),nombreContacto.begin(),::tolower);
+
+        if (mapaContactos.find(nombreContacto) != mapaContactos.end()){
+
+            cout << "Eliminar a " << nombreContacto << " de Favoritos"<<endl;
+            cout << "Confirmar acción (Y/N): ";
+            cin >> favorito;
+            cout << endl;
+            transform(favorito.begin(),favorito.end(),favorito.begin(),::tolower);
+
+            if(favorito == "y"){
+                if(mapaContactos[nombreContacto].favorite){
+
+                    mapaContactos[nombreContacto].favorite = false;
+                    cout << "Confirmacion: " << nombreContacto << " no pertenece a Favoritos." << endl;
+
+                }else{
+                    cout <<"Error: " << nombreContacto << " no esta en la lista de favoritos." << endl;
+                }
+
+            }else{
+                cout << "Acción cancelada." << endl;
+            }
+
+        }else{
+            cout << "El contacto no pertenece a la libreta" << endl;
+        }
+
+    }else{
+        cout << "ERROR" << endl;
+    }
+    
+    return mapaContactos;
+};
+
 int main() {
     // Creamos el mapa de contactos
     map<std::string, Contacto> mapaContactos;
@@ -226,7 +267,12 @@ int main() {
     // Llamar a la función para imprimir la información
     imprimirInformacion(mapaContactos);
 
+    // Añadimos a Favoritos
     mapaContactos = añadirFavorito(mapaContactos, "santiago");
+    imprimirInformacion(mapaContactos);
+
+    // Eliminamos de favoritos
+    mapaContactos = eliminarFavorito(mapaContactos, "santiago");
     imprimirInformacion(mapaContactos);
 
     return 0;
