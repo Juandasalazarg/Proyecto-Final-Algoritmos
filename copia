@@ -1,0 +1,17 @@
+void copia_seguridad(std::string arc,map<std::string,Contacto> contactos){
+    ofstream outputFile(arc, ios::trunc);  // Modo trunc para vaciar el archivo
+
+    if (!outputFile.is_open()) {
+        cerr << "Error al abrir el archivo: " << arc << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    for (const auto& par : contactos) {
+        const string& nombre = par.first;
+        const Contacto& c = par.second;
+        outputFile << nombre << ';' << c.numero << ';' << c.redSocial << ';'
+                    << c.direccion << ';' << (c.favorite ? "y" : "n") << ';' << c.icono << '\n';
+    }
+
+    outputFile.close();
+}
