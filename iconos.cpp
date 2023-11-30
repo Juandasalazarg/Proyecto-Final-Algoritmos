@@ -57,79 +57,79 @@ void imprimirInformacion(const std::map<std::string, Contacto>& mapa) {
 string icono(string nombre){
     char inicial =nombre[0];
     if(inicial=='a'){
-        return "A.png";
+        return "🅐";
     }
     else if(inicial=='b'){
-        return "B.png";
+        return "🅑";
     }
     else if(inicial=='c'){
-        return "C.png";
+        return "🅒";
     }
     else if(inicial=='d'){
-        return "D.png";
+        return "🅓";
     }
     else if(inicial=='e'){
-        return "E.png";
+        return "🅔";
     }
     else if(inicial=='f'){
-        return "F.png";
+        return "🅕";
     }
     else if(inicial=='g'){
-        return "G.png";
+        return "🅖";
     }
     else if(inicial=='h'){
-        return "H.png";
+        return "🅗";
     }
     else if(inicial=='i'){
-        return "I.png";
+        return "🅘";
     }
     else if(inicial=='j'){
-        return "J.png";
+        return "🅙";
     }
     else if(inicial=='k'){
-        return "K.png";
+        return "🅚";
     }
     else if(inicial=='l'){
-        return "L.png";
+        return "🅛";
     }
     else if(inicial=='m'){
-        return "M.png";
+        return "🅜";
     }
     else if(inicial=='n'){
-        return "N.png";
+        return "🅝";
     }
     else if(inicial=='o'){
-        return "O.png";
+        return "🅞";
     }
     else if(inicial=='p'){
-        return "P.png";
+        return "🅟";
     }
     else if(inicial=='q'){
-        return "Q.png";
+        return "🅠";
     }
     else if(inicial=='r'){
-        return "R.png";
+        return "🅡";
     }
     else if(inicial=='s'){
-        return "S.png";
+        return "🅢";
     }
     else if(inicial=='t'){
-        return "T.png";
+        return "🅣";
     }
     else if(inicial=='u'){
-        return "U.png";
+        return "🅤";
     }
     else if(inicial=='v'){
-        return "V.png";
+        return "🅥";
     }
     else if(inicial=='x'){
-        return "X.png";
+        return "🅧";
     }
     else if(inicial=='y'){
-        return "Y.png";
+        return "🅨";
     }
     else{
-        return "Z.png";
+        return "🅩";
     }
 }
 map<std::string, Contacto> add_contacto(map<std::string, Contacto> mapaContactos){
