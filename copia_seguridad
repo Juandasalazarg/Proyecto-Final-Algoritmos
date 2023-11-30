@@ -15,3 +15,45 @@ void copia_seguridad(std::string arc,map<std::string,Contacto> contactos){
 
     outputFile.close();
 }
+
+map<std::string, Contacto> archivo(const string p){
+    // Intentar abrir el archivo
+    std::ifstream inputFile(p);
+    if (!inputFile.is_open()) {
+        cerr << "Error al abrir el archivo: " << p << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    map<string,Contacto> contactos;
+
+
+    std::string linea;
+    while (std::getline(inputFile, linea)) {
+        std::istringstream ss(linea);
+        std::string token;
+        string nombre; 
+        Contacto y;
+        std::getline(ss, token, ';'); 
+        nombre=token;
+        transform(nombre.begin(),nombre.end(),nombre.begin(),::tolower);
+        std::getline(ss, token, ';');
+        y.numero = std::stoll(token); 
+        std::getline(ss, token, ';');
+        y.redSocial = token;  
+        std::getline(ss, token, ';');
+        y.direccion = token;
+        std::getline(ss, token, ';');
+        if(token=="y"){
+            y.favorite=true;
+        }
+        else{
+            y.favorite=false;
+        }
+        std::getline(ss, token, ';');
+        y.icono=token;
+        contactos[nombre]=y;
+    }
+    // Cerrar el archivo después de su uso
+    inputFile.close();
+    return contactos;
+}
