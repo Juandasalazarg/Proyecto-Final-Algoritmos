@@ -1,0 +1,43 @@
+#include <iostream>
+#include <map>
+#include <string>
+#include <cctype>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <stack>
+
+stack<string> Llamar_contacto(stack<string>& recientes, const map<string, Contacto>& mapaContactos) {
+    long long num_Contacto;
+
+    cout << "Ingrese el numero del contacto que desea llamar: ";
+    cin >> num_Contacto;
+    cout << endl;
+    bool flag = false;
+
+    for (const auto& par : mapaContactos) {
+        const string& clave = par.first;
+        const long long num = par.second.numero;
+        if (num == num_Contacto) {
+            recientes.push(clave);
+            flag = true;
+        }
+    }
+    if (!flag){
+        cout<<"!NUMERO NO VALIDO!";
+    }
+    return recientes;
+}
+
+void reciente(stack<string>& recientes, const map<string, Contacto>& mapaContactos) {
+    
+    cout<<"CONTACTOS ---- RECIENTES"<<endl;
+    
+    while (!recientes.empty()) {
+        map<string, Contacto> reserva;
+        const string& contacto_reciente = recientes.top();
+        reserva[contacto_reciente] = mapaContactos.at(contacto_reciente);
+        recientes.pop();
+        imprimirInformacion(reserva);
+    }
+}
